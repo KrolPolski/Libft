@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/12/29 13:18:47 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:22:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*Create a function vec_new which will take a pointer to a t_vec and allocate 
 len * elem_size bytes in the buffer as well as initialize its length
 and element size.*/
-int vec_new(t_vec *dst, size_t init_len, size_t elem_size)
+int	vec_new(t_vec *dst, size_t init_len, size_t elem_size)
 {
 	if (!dst || elem_size == 0)
 		return (-1);
@@ -33,6 +33,7 @@ int vec_new(t_vec *dst, size_t init_len, size_t elem_size)
 	}
 	return (1);
 }
+
 /* Create a function vec_free that frees the allocated resources in src and zeroes its fields.*/
 void	vec_free(t_vec *src)
 {
@@ -42,6 +43,7 @@ void	vec_free(t_vec *src)
 	src->elem_size = 0;
 	src->len = 0;
 }
+
 /*Create a function vec_from which takes in a pointer to some
  memory, which then will be copied over to the new vector.*/
 int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
@@ -56,6 +58,7 @@ int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 	dst->len = len;
 	return(1);
 }
+
 /* Create a function vec_copy. The copy function is very simple and will only copy at 
 most as many bytes as are available in the dst vector */
 int vec_copy(t_vec *dst, t_vec *src)
@@ -85,7 +88,7 @@ static int	vec_resize(t_vec *src, size_t target_size)
 
 	if (!src || target_size < 0)
 		return (-1);
-		old_ptr = src->memory;
+	old_ptr = src->memory;
 	if (target_size >= src->alloc_size)
 	{
 		src->memory = malloc(target_size);
@@ -103,18 +106,4 @@ static int	vec_resize(t_vec *src, size_t target_size)
 		src->alloc_size = target_size;
 	}
 	return (1);
-}
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-    t_vec   t1;
-    int     base[] = {1, 2, 3, 4, 5};
-
-    assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    assert(vec_resize(&t1, 100) > 0);
-    assert(memcmp(t1.memory, base, sizeof(base)) == 0);
-    vec_free(&t1);
-    printf("test_vec_resize successful!\n");
 }
