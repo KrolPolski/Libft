@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/12/29 10:53:19 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/12/29 11:11:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,25 @@ int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 	dst->len = len;
 	return(1);
 }
+/* Create a function vec_copy. The copy function is very simple and will only copy at 
+most as many bytes as are available in the dst vector */
+int vec_copy(t_vec *dst, t_vec *src)
+{
+	size_t copy_size;
+
+	if (!dst || !src)
+		return (-1);
+	if (!dst->memory)
+		if (vec_new(dst, src->len, src->elem_size) < 0)
+			return(-1);
+	if (src->len * src->elem_size < dst->alloc_size)
+		copy_size = src->len * src->elem_size;
+	else
+		copy_size = dst->alloc_size;
+	if (!ft_memmove(dst->memory, src->memory, copy_size))
+		return (-1);
+	return (1);
+}
 
 #include <assert.h>
 #include <stdio.h>
@@ -63,11 +82,15 @@ int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 int main(void)
 {
     t_vec   t1;
+    t_vec   t2;
     int     base[] = {1, 2, 3, 4, 5};
 
     assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    assert(memcmp(t1.memory, base, sizeof(base)) == 0);
+    assert(vec_new(&t2, 5, sizeof(int)) > 0);
+    assert(vec_copy(&t2, &t1) > 0);
+    assert(memcmp(t2.memory, base, sizeof(base)) == 0);
     vec_free(&t1);
-    printf("test_vec_from successful!\n");
+    vec_free(&t2);
+    printf("test_vec_copy successful!\n");
 }
 
