@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/12/29 11:11:22 by rboudwin         ###   ########.fr       */
+/*   Updated: 2023/12/29 13:18:47 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,45 @@ int vec_copy(t_vec *dst, t_vec *src)
 	return (1);
 }
 
+/*Create a function vec_resize which will take in a target_size parameter 
+and either shrink (destructively) or grow the vector to the target size, 
+copying the old contents over to the new allocation.*/
+static int	vec_resize(t_vec *src, size_t target_size)
+{
+	unsigned char	*old_ptr;
+
+	if (!src || target_size < 0)
+		return (-1);
+		old_ptr = src->memory;
+	if (target_size >= src->alloc_size)
+	{
+		src->memory = malloc(target_size);
+		if (!src->memory || !ft_memmove(src->memory, old_ptr, src->alloc_size))
+			return (-1);
+		free(old_ptr);
+		src->alloc_size = target_size;
+	}
+	else
+	{
+		src->memory = malloc(target_size);
+		if (!src->memory || !ft_memmove(src->memory, old_ptr, target_size))
+			return (-1);
+		free(old_ptr);
+		src->alloc_size = target_size;
+	}
+	return (1);
+}
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 int main(void)
 {
     t_vec   t1;
-    t_vec   t2;
     int     base[] = {1, 2, 3, 4, 5};
 
     assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    assert(vec_new(&t2, 5, sizeof(int)) > 0);
-    assert(vec_copy(&t2, &t1) > 0);
-    assert(memcmp(t2.memory, base, sizeof(base)) == 0);
+    assert(vec_resize(&t1, 100) > 0);
+    assert(memcmp(t1.memory, base, sizeof(base)) == 0);
     vec_free(&t1);
-    vec_free(&t2);
-    printf("test_vec_copy successful!\n");
+    printf("test_vec_resize successful!\n");
 }
-
