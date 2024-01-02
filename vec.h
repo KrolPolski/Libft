@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:22:48 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/02 11:48:11 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:51:07 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ int			vec_copy(t_vec *dst, t_vec *src);
 int			vec_resize(t_vec *src, size_t target_size);
 void		*vec_get(t_vec *src, size_t index);
 int			vec_pop(void *dst, t_vec *src);
+int			vec_insert(t_vec *dst, void *src, size_t index);
 #endif

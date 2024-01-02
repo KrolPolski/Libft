@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/02 10:43:55 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/02 13:28:05 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ int	vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 		return (-1);
 	else if (vec_new(dst, len, elem_size) < 0)
 		return (-1);
-	dst->memory = ft_memmove(dst->memory, src, dst->alloc_size);
-	if (!dst->memory)
-		return (-1);
+	ft_memmove(dst->memory, src, dst->alloc_size);
 	dst->len = len;
 	return (1);
 }
