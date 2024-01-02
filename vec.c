@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/12/29 13:22:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:43:55 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	vec_new(t_vec *dst, size_t init_len, size_t elem_size)
 	return (1);
 }
 
-/* Create a function vec_free that frees the allocated resources in src and zeroes its fields.*/
+/* Create a function vec_free that frees the 
+allocated resources in src and zeroes its fields.*/
 void	vec_free(t_vec *src)
 {
 	free(src->memory);
@@ -46,7 +47,7 @@ void	vec_free(t_vec *src)
 
 /*Create a function vec_from which takes in a pointer to some
  memory, which then will be copied over to the new vector.*/
-int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
+int	vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 {
 	if (!dst || !src || elem_size == 0)
 		return (-1);
@@ -56,20 +57,21 @@ int vec_from(t_vec *dst, void *src, size_t len, size_t elem_size)
 	if (!dst->memory)
 		return (-1);
 	dst->len = len;
-	return(1);
+	return (1);
 }
 
-/* Create a function vec_copy. The copy function is very simple and will only copy at 
+/* Create a function vec_copy. The copy 
+function is very simple and will only copy at 
 most as many bytes as are available in the dst vector */
-int vec_copy(t_vec *dst, t_vec *src)
+int	vec_copy(t_vec *dst, t_vec *src)
 {
-	size_t copy_size;
+	size_t	copy_size;
 
 	if (!dst || !src)
 		return (-1);
 	if (!dst->memory)
 		if (vec_new(dst, src->len, src->elem_size) < 0)
-			return(-1);
+			return (-1);
 	if (src->len * src->elem_size < dst->alloc_size)
 		copy_size = src->len * src->elem_size;
 	else
@@ -82,7 +84,7 @@ int vec_copy(t_vec *dst, t_vec *src)
 /*Create a function vec_resize which will take in a target_size parameter 
 and either shrink (destructively) or grow the vector to the target size, 
 copying the old contents over to the new allocation.*/
-static int	vec_resize(t_vec *src, size_t target_size)
+int	vec_resize(t_vec *src, size_t target_size)
 {
 	unsigned char	*old_ptr;
 
