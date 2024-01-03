@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:39:55 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 14:35:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:59:06 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,34 @@ void	vec_iter(t_vec *src, void (*f) (void *))
 	}
 }
 
+/*Create a function vec_map which takes as an argument a function
+ f applied to a copy of each element in the vector. 
+ The copied element will be added to vector dst.*/
+
+void vec_map(t_vec *dst, t_vec *src, void (*f) (void *))
+{
+	size_t i;
+
+	if (!src || !dst || !f)
+		return ;
+	i = 0;
+	if (vec_from(dst, src->memory, src->len, src->elem_size) < 0)
+		return ;
+	while (i < dst->len)
+	{
+		ft_printf("Before: %d\n", (int)dst->memory[i * dst->elem_size]);
+		f(&dst->memory[(i * dst->elem_size)]);
+		ft_printf("After: %d\n", dst->memory[i * dst->elem_size]);
+		i++;
+	}
+}
+
 
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 
-void iter_tester(void *src)
+void map_tester(void *src)
 {
     *(int *)src += 1;
 }
@@ -79,12 +101,15 @@ void iter_tester(void *src)
 int main(void)
 {
     t_vec   t1;
+    t_vec   t2;
     int     base[] = {1, 2, 3, 4, 5};
     int     expect[] = {2, 3, 4, 5, 6};
 
     assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    vec_iter(&t1, iter_tester);
-    assert(memcmp(t1.memory, expect, sizeof(expect)) == 0);
+    assert(vec_new(&t2, 5, sizeof(int)) > 0);
+	vec_map(&t2, &t1, map_tester);
+    assert(memcmp(t2.memory, expect, sizeof(expect)) == 0);
     vec_free(&t1);
-    printf("test_vec_iter successful!\n");
+    vec_free(&t2);
+    printf("test_vec_map successful!\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:22:48 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 14:31:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:39:08 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int			vec_remove(t_vec *src, size_t index);
 int			vec_append(t_vec *dst, t_vec *src);
 int			vec_prepend(t_vec *dst, t_vec *src);
 void		vec_iter(t_vec *src, void (*f) (void *));
+void		vec_map(t_vec *dst, t_vec *src, void (*f) (void *));
 #endif
