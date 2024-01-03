@@ -6,12 +6,14 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:22:48 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 14:39:08 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:51:50 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VEC_H
 # define VEC_H
+# define TRUE 1
+# define FALSE 0
 
 typedef struct s_vec
 {
@@ -26,6 +28,7 @@ int			vec_from(t_vec *dst, void *src, size_t len, size_t elem_size);
 int			vec_copy(t_vec *dst, t_vec *src);
 int			vec_resize(t_vec *src, size_t target_size);
 void		*vec_get(t_vec *src, size_t index);
+int			vec_push(t_vec *dst, void *src);
 int			vec_pop(void *dst, t_vec *src);
 int			vec_insert(t_vec *dst, void *src, size_t index);
 int			vec_remove(t_vec *src, size_t index);
@@ -33,4 +36,5 @@ int			vec_append(t_vec *dst, t_vec *src);
 int			vec_prepend(t_vec *dst, t_vec *src);
 void		vec_iter(t_vec *src, void (*f) (void *));
 void		vec_map(t_vec *dst, t_vec *src, void (*f) (void *));
+int			vec_filter(t_vec *dst, t_vec *src, int (*f) (void *));
 #endif

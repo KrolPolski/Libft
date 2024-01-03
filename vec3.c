@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:39:55 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 14:59:06 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:54:38 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,46 @@ void vec_map(t_vec *dst, t_vec *src, void (*f) (void *))
 	}
 }
 
+/*Create a function vec_filter which takes as an argument a function 
+f applied to a copy of each element in the vector. The copied element
+ will be added to vector dst if true is returned from f.*/
+
+int vec_filter(t_vec *dst, t_vec *src, int (*f) (void *))
+{
+	size_t	i;
+	int		bool_ret;
+	void	*ptr;
+	void 	*tmp;
+
+	if (!src || !dst || !f || !src->memory)
+		return (-1);
+	else if (!dst->memory)
+		vec_new(dst, 1, dst->elem_size);
+	tmp = malloc(dst->elem_size);
+		if (!tmp)
+			return (-1);
+	i = 0;
+	while (i < src->len)
+	{
+		ptr = vec_get(src, i);
+		ft_memmove(tmp, ptr, dst->elem_size);
+		if (f(tmp) == TRUE)
+			vec_push(dst, tmp);
+		i++;
+	}
+	free(tmp);
+	return (1);
+}
 
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
-
-void map_tester(void *src)
+#include <stdbool.h>
+int filter_tester(void *src)
 {
-    *(int *)src += 1;
+    if (*(int *)src % 2 == 0)
+        return (true);
+    return (false);
 }
 
 int main(void)
@@ -103,13 +135,15 @@ int main(void)
     t_vec   t1;
     t_vec   t2;
     int     base[] = {1, 2, 3, 4, 5};
-    int     expect[] = {2, 3, 4, 5, 6};
+    int     expect[] = {2, 4};
 
     assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
     assert(vec_new(&t2, 5, sizeof(int)) > 0);
-	vec_map(&t2, &t1, map_tester);
+	ft_printf("%d %d\n", (int)t1.memory[0], (int)t1.memory[sizeof(int)]);
+    vec_filter(&t2, &t1, filter_tester);
+	ft_printf("%d %d\n", (int)t2.memory[0], (int)t2.memory[sizeof(int)]);
     assert(memcmp(t2.memory, expect, sizeof(expect)) == 0);
     vec_free(&t1);
     vec_free(&t2);
-    printf("test_vec_map successful!\n");
+    printf("test_vec_filter successful!\n");
 }
