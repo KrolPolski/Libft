@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:22:22 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 10:44:13 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 13:39:42 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	vec_insert(t_vec *dst, void *src, size_t index)
 	dst->len++;
 	return (1);
 }
-
+/*Create a function vec_remove which will remove an element 
+from any position in the vector without overwriting existing elements.*/
 int	vec_remove(t_vec *src, size_t index)
 {
 	if (!src || index > src->len)
@@ -85,28 +86,4 @@ int	vec_remove(t_vec *src, size_t index)
 		(src->len - index) * src->elem_size);
 	src->len--;
 	return (1);
-}
-
-
-
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-
-int main(void)
-{
-    t_vec   t1;
-    int     base[] = {1, 2, 3, 4, 5};
-    int     insert[] = {42, 666, 7};
-
-    assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    vec_insert(&t1, &insert[0], 1);
-    vec_insert(&t1, &insert[1], 4);
-    vec_insert(&t1, &insert[2], 7);
-    vec_remove(&t1, 1);
-    vec_remove(&t1, 3);
-    vec_remove(&t1, 5);
-    assert(memcmp(t1.memory, base, sizeof(base)) == 0);
-    vec_free(&t1);
-    printf("test_vec_remove successful!\n");
 }
