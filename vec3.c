@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:39:55 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 15:54:38 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:50:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ f applied to a copy of each element in the vector. The copied element
 int vec_filter(t_vec *dst, t_vec *src, int (*f) (void *))
 {
 	size_t	i;
-	int		bool_ret;
 	void	*ptr;
 	void 	*tmp;
 
@@ -117,33 +116,4 @@ int vec_filter(t_vec *dst, t_vec *src, int (*f) (void *))
 	}
 	free(tmp);
 	return (1);
-}
-
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-int filter_tester(void *src)
-{
-    if (*(int *)src % 2 == 0)
-        return (true);
-    return (false);
-}
-
-int main(void)
-{
-    t_vec   t1;
-    t_vec   t2;
-    int     base[] = {1, 2, 3, 4, 5};
-    int     expect[] = {2, 4};
-
-    assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    assert(vec_new(&t2, 5, sizeof(int)) > 0);
-	ft_printf("%d %d\n", (int)t1.memory[0], (int)t1.memory[sizeof(int)]);
-    vec_filter(&t2, &t1, filter_tester);
-	ft_printf("%d %d\n", (int)t2.memory[0], (int)t2.memory[sizeof(int)]);
-    assert(memcmp(t2.memory, expect, sizeof(expect)) == 0);
-    vec_free(&t1);
-    vec_free(&t2);
-    printf("test_vec_filter successful!\n");
 }
