@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:22:48 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 15:58:07 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:53:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,5 @@ void		vec_iter(t_vec *src, void (*f) (void *));
 void		vec_map(t_vec *dst, t_vec *src, void (*f) (void *));
 int			vec_filter(t_vec *dst, t_vec *src, int (*f) (void *));
 int			vec_reduce(void *acc, t_vec *src, void (*f) (void *, void *));
+void		vec_sort(t_vec *src, int (*f)(void *, void *));
 #endif

@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:59:03 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 16:51:18 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:07:22 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ first argument thus we can reduce the elements in the vector into one
 element.*/
 int	vec_reduce(void *acc, t_vec *src, void (*f) (void *, void *))
 {
-	size_t i;
+	size_t	i;
 
 	if (!src || !acc || !f)
 		return (-1);
@@ -30,25 +30,30 @@ int	vec_reduce(void *acc, t_vec *src, void (*f) (void *, void *))
 	}
 	return (1);
 }
-#include <assert.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
 
-void reduce_tester(void *acc, void *src)
+/*Create a function vec_sort which takes in a function f
+ determining order and equality of the two elements passed 
+ as parameters and thus sorting the array accordingly 
+ from the smallest to the largest element.*/
+void	vec_sort(t_vec *src, int (*f)(void *, void *))
 {
-    *(int *)acc += *(int *)src;
-}
+	unsigned long	i;
+	long			cmp_result;
 
-int main(void)
-{
-    t_vec   t1;
-    int     base[] = {1, 2, 3, 4, 5};
-    int     result = 0;
-
-    assert(vec_from(&t1, base, 5, sizeof(int)) > 0);
-    vec_reduce(&result, &t1, reduce_tester);
-    assert(result == 15);
-    vec_free(&t1);
-    printf("test_vec_reduce successful!\n");
+	if (!src || !f)
+		return ;
+	i = 0;
+	while (i < src->len - 1)
+	{
+		cmp_result = f(vec_get(src, i), vec_get(src, i + 1));
+		ft_printf("%u \n", cmp_result);
+		if (cmp_result > 0)
+		{
+			vec_insert(src, vec_get(src, i), src->len);
+			vec_remove(src, i);
+			i = 0;
+		}
+		else
+			i++;
+	}
 }
