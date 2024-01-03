@@ -6,13 +6,12 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/02 13:28:05 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:26:17 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "ft_printf.h"
-#include "vec.h"
+
 /*Create a function vec_new which will take a pointer to a t_vec and allocate 
 len * elem_size bytes in the buffer as well as initialize its length
 and element size.*/
