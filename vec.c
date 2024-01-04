@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 10:25:52 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 10:26:17 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 15:48:34 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	vec_copy(t_vec *dst, t_vec *src)
 		copy_size = dst->alloc_size;
 	if (!ft_memmove(dst->memory, src->memory, copy_size))
 		return (-1);
+	dst->len = copy_size / dst->elem_size;
 	return (1);
 }
 
