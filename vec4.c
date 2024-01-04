@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 15:59:03 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/03 18:07:22 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 12:48:44 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	vec_sort(t_vec *src, int (*f)(void *, void *))
 	while (i < src->len - 1)
 	{
 		cmp_result = f(vec_get(src, i), vec_get(src, i + 1));
-		ft_printf("%u \n", cmp_result);
 		if (cmp_result > 0)
 		{
 			vec_insert(src, vec_get(src, i), src->len);
