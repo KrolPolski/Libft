@@ -6,7 +6,7 @@
 /*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 13:22:22 by rboudwin          #+#    #+#             */
-/*   Updated: 2024/01/04 14:24:58 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:35:06 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,10 @@ int	vec_insert(t_vec *dst, void *src, size_t index)
 	if (!dst || !src || index > dst->len)
 		return (-1);
 	else if (index == dst->len)
-	{
-		ft_printf("We are just going to push");
 		return (vec_push(dst, src));
-	}
 	if (dst->alloc_size <= dst->elem_size * dst->len)
 		if (vec_resize(dst, (dst->alloc_size * 2)) < 0)
 			return (-1);
-	ft_printf("new allocation is %d \n", dst->alloc_size);
 	ft_memmove(vec_get(dst, index) + dst->elem_size,
 		vec_get(dst, index), (dst->len - index) * dst->elem_size);
 	ft_memcpy(vec_get(dst, index), src, dst->elem_size);
