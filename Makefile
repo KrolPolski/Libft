@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2023/12/14 12:33:14 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/01/04 09:43:52 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,11 @@ SRCS = ft_atoi.c \
 	   ft_handlenumbers.c \
 	   ft_pointers.c \
 	   ft_printf.c \
-	   get_next_line_bonus.c
+	   get_next_line_bonus.c \
+	   vec.c \
+	   vec2.c \
+	   vec3.c \
+	   vec4.c
 		
 
 OBJS = $(SRCS:.c=.o)
