@@ -6,13 +6,14 @@
 #    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2024/01/04 09:43:52 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/01/15 10:52:45 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = ft_atoi.c \
+	   ft_long_atoi.c \
 	   ft_bzero.c \
 	   ft_calloc.c \
 	   ft_isalnum.c	\
