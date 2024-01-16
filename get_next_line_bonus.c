@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:24:49 by rboudwin          #+#    #+#             */
-/*   Updated: 2023/11/29 20:25:41 by rboudwin         ###   ########.fr       */
+/*   Updated: 2024/01/16 09:36:58 by rboudwin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
