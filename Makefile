@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rboudwin <rboudwin@student.42.fr>          +#+  +:+       +#+         #
+#    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/30 11:21:42 by rboudwin          #+#    #+#              #
-#    Updated: 2024/01/15 10:52:45 by rboudwin         ###   ########.fr        #
+#    Created: 2024/01/23 12:25:07 by rboudwin          #+#    #+#              #
+#    Updated: 2024/01/23 12:25:09 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 CFLAGS = -Wall -Wextra -Werror
 
