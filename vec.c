@@ -86,7 +86,7 @@ int	vec_resize(t_vec *src, size_t target_size)
 {
 	unsigned char	*old_ptr;
 
-	if (!src || target_size < 0)
+	if (!src)
 		return (-1);
 	old_ptr = src->memory;
 	if (target_size >= src->alloc_size)
