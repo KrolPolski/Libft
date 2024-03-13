@@ -6,7 +6,7 @@
 #    By: rboudwin <rboudwin@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/23 12:25:07 by rboudwin          #+#    #+#              #
-#    Updated: 2024/01/23 12:25:09 by rboudwin         ###   ########.fr        #
+#    Updated: 2024/03/13 14:10:56 by rboudwin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,21 +76,21 @@ NAME = libft.a
 all: $(NAME)
 
 $(NAME) : $(OBJS)
-	ar -rc $(NAME) $(OBJS)
+	@ar -rc $(NAME) $(OBJS)
 
 bonus : .bonus
 	
 .bonus : $(OBJS) $(BONUS_OBJS)
-		touch .bonus;
-		ar -rc $(NAME) $(BONUS_OBJS)
+		@touch .bonus;
+		@ar -rc $(NAME) $(BONUS_OBJS)
 %.o: %.c
-	cc $(CFLAGS) -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(BONUS_OBJS) .bonus
+	@rm -f $(OBJS) $(BONUS_OBJS) .bonus
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
